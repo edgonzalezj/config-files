@@ -1,15 +1,46 @@
 # Configuracion de desarrollo para auth-manager
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_auth
     username: postgres
     password: eduardo
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        default_schema: teamclub_auth
+        globally_quoted_identifiers: true
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:db/data.sql
+      continue-on-error: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8081/.well-known/jwks.json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
 
 clients:
   usuario-manager:
     url: http://localhost:8082
-sql:
-  init:
-    mode: always
-    data-locations: classpath:db/data.sql
-    continue-on-error: false
+
+internal:
+  api-key: wakana-internal-key
+
+security:
+  jwt:
+    issuer: wakana-teamclub-auth
+    expires-minutes: 60
