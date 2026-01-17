@@ -1,0 +1,12 @@
+# Configuracion de desarrollo para traductor-manager
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+    username: postgres
+    password: eduardo
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8081/.well-known/jwks.json
