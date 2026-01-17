@@ -1,0 +1,7 @@
+# Configuración específica para traductor-manager (todos los entornos)
+server:
+  port: 8084
+
+spring:
+  application:
+    name: traductor-manager

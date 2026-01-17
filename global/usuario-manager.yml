@@ -1,0 +1,15 @@
+# Configuración específica para usuario-manager (todos los entornos)
+server:
+  port: 8082
+
+spring:
+  application:
+    name: usuario-manager
+
+internal:
+  api-key: ${INTERNAL_API_KEY:wakana-internal-key}
+
+teamclub:
+  bootstrap:
+    admin-email: ${ADMIN_EMAIL:admin@teamclub.com}
+    admin-password: ${ADMIN_PASSWORD:admin}

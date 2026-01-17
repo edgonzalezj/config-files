@@ -1,0 +1,7 @@
+# Configuración específica para club-manager (todos los entornos)
+server:
+  port: 8085
+
+spring:
+  application:
+    name: club-manager

@@ -1,0 +1,16 @@
+# Configuración común para todos los microservicios
+# Este archivo se aplica a todos los servicios independientemente del perfil
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh
+  endpoint:
+    health:
+      show-details: when_authorized
+
+logging:
+  level:
+    root: INFO
+    com.wakana.teamclub: INFO

@@ -1,0 +1,10 @@
+# Configuración específica para auth-manager (todos los entornos)
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-manager
+
+internal:
+  api-key: ${INTERNAL_API_KEY:wakana-internal-key}

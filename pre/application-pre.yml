@@ -1,0 +1,30 @@
+# Configuración común para entorno PRE (Preproducción)
+spring:
+  datasource:
+    url: jdbc:postgresql://pre-db.teamclub.local:5432/teamclub_pre?currentSchema=teamclub
+    username: teamclub_pre
+    password: pre_password_changeme
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: teamclub
+        globally_quoted_identifiers: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://auth-manager:8081/.well-known/jwks.json
+
+logging:
+  level:
+    root: WARN
+    com.wakana.teamclub: INFO
