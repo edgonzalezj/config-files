@@ -1,0 +1,4 @@
+# Configuracion global de desarrollo
+logging:
+  level:
+    org.springframework.security: DEBUG
