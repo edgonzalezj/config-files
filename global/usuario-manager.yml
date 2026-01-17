@@ -1,15 +1,25 @@
-# Configuración específica para usuario-manager (todos los entornos)
+# Configuracion comun de usuario-manager (todos los entornos)
 server:
   port: 8082
 
 spring:
-  application:
-    name: usuario-manager
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: teamclub
+        globally_quoted_identifiers: true
+
+  sql:
+    init:
+      mode: never
 
 internal:
-  api-key: ${INTERNAL_API_KEY:wakana-internal-key}
+  api-key: wakana-internal-key
 
 teamclub:
   bootstrap:
-    admin-email: ${ADMIN_EMAIL:admin@teamclub.com}
-    admin-password: ${ADMIN_PASSWORD:admin}
+    admin-email: admin@teamclub.com
+    admin-password: admin

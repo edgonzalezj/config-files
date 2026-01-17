@@ -1,16 +1,14 @@
-# Configuración común para todos los microservicios
-# Este archivo se aplica a todos los servicios independientemente del perfil
-
+# Configuracion global para todos los microservicios (todos los entornos)
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,refresh
+        include: health,info
   endpoint:
     health:
-      show-details: when_authorized
+      show-details: always
 
 logging:
   level:
     root: INFO
-    com.wakana.teamclub: INFO
+    com.wakana.teamclub: DEBUG
