@@ -10,3 +10,9 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:8081/.well-known/jwks.json
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:db/data.sql
+      continue-on-error: false
