@@ -1,4 +1,18 @@
 # Configuracion global para todos los microservicios (todos los entornos)
+spring:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+
+  sql:
+    init:
+      mode: never
+      continue-on-error: false
+
 management:
   endpoints:
     web:

@@ -1,10 +1,25 @@
-# Configuración específica para auth-manager (todos los entornos)
+# Configuracion especifica para auth-manager (todos los entornos)
 server:
   port: 8081
 
 spring:
-  application:
-    name: auth-manager
+  jpa:
+    properties:
+      hibernate:
+        default_schema: teamclub_auth
+
+  sql:
+    init:
+      data-locations: classpath:db/data.sql
+
+clients:
+  usuario-manager:
+    url: http://localhost:8082
 
 internal:
   api-key: ${INTERNAL_API_KEY:wakana-internal-key}
+
+security:
+  jwt:
+    issuer: wakana-teamclub-auth
+    expires-minutes: 60
