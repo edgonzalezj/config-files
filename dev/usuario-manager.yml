@@ -4,7 +4,15 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
     username: postgres
     password: eduardo
-
+jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: teamclub
+        globally_quoted_identifiers: true
   security:
     oauth2:
       resourceserver:
