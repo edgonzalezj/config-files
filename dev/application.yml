@@ -1,4 +1,27 @@
-# Configuracion global de desarrollo
+# Configuración común para entorno DEV
+spring:
+  datasource:
+    url: jdbc:postgresql://dev-db.teamclub.local:5432/teamclub_dev?currentSchema=teamclub
+    username: teamclub_dev
+    password: dev_password_changeme
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: teamclub
+        globally_quoted_identifiers: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://auth-manager:8081/.well-known/jwks.json
+
 logging:
   level:
     org.springframework.security: DEBUG
+    com.wakana.teamclub: DEBUG
