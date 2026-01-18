@@ -1,5 +1,9 @@
-# Configuracion global para todos los microservicios (todos los entornos)
+# Configuracion comun para todos los microservicios
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+    # username y password vienen de Vault
+
   jpa:
     open-in-view: false
     hibernate:
@@ -13,16 +17,26 @@ spring:
       mode: never
       continue-on-error: false
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8081/.well-known/jwks.json
+
+  # Configuracion de Vault
+  cloud:
+    vault:
+      uri: http://localhost:8200
+      token: ${VAULT_TOKEN:teamclub-root-token}
+      kv:
+        enabled: true
+        backend: secret
+      fail-fast: false
+
 management:
   endpoints:
     web:
       exposure:
         include: health,info
-  endpoint:
-    health:
-      show-details: always
 
-logging:
-  level:
-    root: INFO
-    com.wakana.teamclub: DEBUG
+# internal.api-key viene de Vault

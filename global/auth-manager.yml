@@ -1,4 +1,4 @@
-# Configuracion especifica para auth-manager (todos los entornos)
+# Configuracion especifica de auth-manager
 server:
   port: 8081
 
@@ -12,14 +12,17 @@ spring:
     init:
       data-locations: classpath:db/data.sql
 
+  cloud:
+    vault:
+      kv:
+        application-name: auth-manager
+
 clients:
   usuario-manager:
     url: http://localhost:8082
-
-internal:
-  api-key: ${INTERNAL_API_KEY:wakana-internal-key}
 
 security:
   jwt:
     issuer: wakana-teamclub-auth
     expires-minutes: 60
+    # secret viene de Vault

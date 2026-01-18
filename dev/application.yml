@@ -1,18 +1,13 @@
-# Configuración común para entorno DEV
+# Configuracion comun para entorno DEV
+# Sobrescribe valores de global/application.yml si es necesario
+# Los secretos (username, password, api-keys) vienen de Vault
+
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-    open-in-view: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
 
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://auth-manager:8081/.well-known/jwks.json
-
-logging:
-  level:
-    org.springframework.security: DEBUG
-    com.wakana.teamclub: DEBUG
+          jwk-set-uri: http://localhost:8081/.well-known/jwks.json

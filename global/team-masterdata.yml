@@ -1,4 +1,4 @@
-# Configuracion especifica para team-masterdata (todos los entornos)
+# Configuracion especifica de team-masterdata
 server:
   port: 8083
 
@@ -6,8 +6,13 @@ spring:
   jpa:
     properties:
       hibernate:
-        default_schema: teamclub
+        default_schema: teamclub_masterdata
 
   sql:
     init:
       data-locations: classpath:db/data.sql
+
+  cloud:
+    vault:
+      kv:
+        application-name: team-masterdata

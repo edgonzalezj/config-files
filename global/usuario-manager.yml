@@ -1,28 +1,28 @@
-# Configuracion comun de usuario-manager (todos los entornos)
+# Configuracion especifica de usuario-manager
 server:
   port: 8082
 
 spring:
   jpa:
-    open-in-view: false
-    hibernate:
-      ddl-auto: update
     properties:
       hibernate:
         default_schema: teamclub
-        globally_quoted_identifiers: true
 
   sql:
     init:
-      mode: never
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
 
-internal:
-  api-key: wakana-internal-key
+  cloud:
+    vault:
+      kv:
+        application-name: usuario-manager
+
+clients:
+  auth-manager:
+    url: http://localhost:8081
 
 teamclub:
   bootstrap:
     admin-email: admin@teamclub.com
-    admin-password: admin
-clients:
-  auth-manager:
-    url: http://localhost:8081
+    # admin-password viene de Vault

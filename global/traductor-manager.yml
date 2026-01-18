@@ -1,4 +1,4 @@
-# Configuracion especifica para traductor-manager (todos los entornos)
+# Configuracion especifica de traductor-manager
 server:
   port: 8084
 
@@ -6,8 +6,13 @@ spring:
   jpa:
     properties:
       hibernate:
-        default_schema: teamclub
+        default_schema: teamclub_traductor
 
   sql:
     init:
       data-locations: classpath:db/data.sql
+
+  cloud:
+    vault:
+      kv:
+        application-name: traductor-manager

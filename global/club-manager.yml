@@ -1,4 +1,4 @@
-# Configuracion especifica para club-manager (todos los entornos)
+# Configuracion especifica de club-manager
 server:
   port: 8085
 
@@ -8,11 +8,21 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        default_schema: teamclub
+        default_schema: teamclub_club
 
   sql:
     init:
       data-locations: classpath:db/data.sql
+
+  cloud:
+    vault:
+      kv:
+        application-name: club-manager
+
+management:
+  endpoint:
+    health:
+      show-details: always
 
 clients:
   team-masterdata:
