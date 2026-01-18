@@ -1,9 +1,8 @@
 # Configuracion de desarrollo para auth-manager
+# Los secretos (username, password, api-key) vienen de Vault
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_auth
-    username: postgres
-    password: eduardo
 
   jpa:
     open-in-view: false
@@ -36,9 +35,6 @@ management:
 clients:
   usuario-manager:
     url: http://localhost:8082
-
-internal:
-  api-key: wakana-internal-key
 
 security:
   jwt:

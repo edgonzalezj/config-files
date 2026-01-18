@@ -1,9 +1,8 @@
 # Configuracion de desarrollo para team-masterdata
+# Los secretos (username, password) vienen de Vault
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
-    username: postgres
-    password: eduardo
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_masterdata
 
   security:
     oauth2:

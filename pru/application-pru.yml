@@ -1,9 +1,8 @@
 # Configuración común para entorno PRU (Pruebas)
+# Los secretos (username, password) vienen de Vault
 spring:
   datasource:
     url: jdbc:postgresql://pru-db.teamclub.local:5432/teamclub_pru?currentSchema=teamclub
-    username: teamclub_pru
-    password: pru_password_changeme
 
   jpa:
     hibernate:
@@ -20,6 +19,15 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://auth-manager:8081/.well-known/jwks.json
+
+  cloud:
+    vault:
+      uri: ${VAULT_URI:http://vault:8200}
+      token: ${VAULT_TOKEN}
+      kv:
+        enabled: true
+        backend: secret
+      fail-fast: true
 
 logging:
   level:

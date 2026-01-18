@@ -1,9 +1,8 @@
 # Configuracion de desarrollo para usuario-manager
+# Los secretos (username, password, api-key) vienen de Vault
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
-    username: postgres
-    password: eduardo
 
   jpa:
     open-in-view: false
@@ -33,5 +32,6 @@ management:
       exposure:
         include: health,info
 
-internal:
-  api-key: wakana-internal-key
+clients:
+  auth-manager:
+    url: http://localhost:8081
