@@ -23,3 +23,6 @@ teamclub:
   bootstrap:
     admin-email: admin@teamclub.com
     admin-password: admin
+clients:
+  auth-manager:
+    url: http://localhost:8081
