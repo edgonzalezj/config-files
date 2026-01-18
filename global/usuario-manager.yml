@@ -25,4 +25,4 @@ teamclub:
     admin-password: admin
 clients:
   auth-manager:
-    url: http://localhost:8081
+    url: http://localhost:80816
