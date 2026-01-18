@@ -3,6 +3,9 @@ server:
   port: 8085
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_club
+
   jpa:
     show-sql: true
     properties:
@@ -14,11 +17,6 @@ spring:
     init:
       data-locations: classpath:db/data.sql
 
-  cloud:
-    vault:
-      kv:
-        application-name: club-manager
-
 management:
   endpoint:
     health:
@@ -27,3 +25,5 @@ management:
 clients:
   team-masterdata:
     url: http://localhost:8083
+
+# internal.api-key viene de Vault

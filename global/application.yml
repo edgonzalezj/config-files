@@ -23,16 +23,6 @@ spring:
         jwt:
           jwk-set-uri: http://localhost:8081/.well-known/jwks.json
 
-  # Configuracion de Vault
-  cloud:
-    vault:
-      uri: http://localhost:8200
-      token: ${VAULT_TOKEN:teamclub-root-token}
-      kv:
-        enabled: true
-        backend: secret
-      fail-fast: false
-
 management:
   endpoints:
     web:

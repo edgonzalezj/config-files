@@ -3,26 +3,22 @@ server:
   port: 8082
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+
   jpa:
+    defer-datasource-initialization: true
     properties:
       hibernate:
         default_schema: teamclub
 
   sql:
     init:
-      schema-locations: classpath:db/schema.sql
+      mode: always
       data-locations: classpath:db/data.sql
-
-  cloud:
-    vault:
-      kv:
-        application-name: usuario-manager
 
 clients:
   auth-manager:
     url: http://localhost:8081
 
-teamclub:
-  bootstrap:
-    admin-email: admin@teamclub.com
-    # admin-password viene de Vault
+# internal.api-key viene de Vault

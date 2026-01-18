@@ -3,6 +3,9 @@ server:
   port: 8083
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_masterdata
+
   jpa:
     properties:
       hibernate:
@@ -12,7 +15,4 @@ spring:
     init:
       data-locations: classpath:db/data.sql
 
-  cloud:
-    vault:
-      kv:
-        application-name: team-masterdata
+# internal.api-key viene de Vault

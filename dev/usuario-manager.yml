@@ -1,8 +1,12 @@
 # Configuracion de desarrollo para usuario-manager
 # Los secretos (username, password, api-key) vienen de Vault
+server:
+  port: 8082
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+    # username y password vienen de Vault
 
   jpa:
     open-in-view: false
@@ -35,3 +39,5 @@ management:
 clients:
   auth-manager:
     url: http://localhost:8081
+
+# internal.api-key viene de Vault

@@ -3,19 +3,19 @@ server:
   port: 8081
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_auth
+
   jpa:
+    defer-datasource-initialization: true
     properties:
       hibernate:
         default_schema: teamclub_auth
 
   sql:
     init:
+      mode: always
       data-locations: classpath:db/data.sql
-
-  cloud:
-    vault:
-      kv:
-        application-name: auth-manager
 
 clients:
   usuario-manager:
@@ -26,3 +26,5 @@ security:
     issuer: wakana-teamclub-auth
     expires-minutes: 60
     # secret viene de Vault
+
+# internal.api-key viene de Vault

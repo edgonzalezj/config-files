@@ -1,11 +1,38 @@
 # Configuracion de desarrollo para traductor-manager
 # Los secretos (username, password) vienen de Vault
+server:
+  port: 8084
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_traductor
+    # username y password vienen de Vault
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: teamclub_traductor
+        globally_quoted_identifiers: true
+
+  sql:
+    init:
+      mode: never
+      data-locations: classpath:db/data.sql
+      continue-on-error: false
 
   security:
     oauth2:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:8081/.well-known/jwks.json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+# internal.api-key viene de Vault
