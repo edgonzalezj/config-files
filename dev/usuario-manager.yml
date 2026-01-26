@@ -1,23 +1,47 @@
-# Configuracion de desarrollo para usuario-manager
-# Los secretos (username, password, api-key) vienen de Vault
+# Perfil dev: conecta al Config Server y Vault para secretos
 server:
   port: 8082
 
 spring:
+  config:
+    import:
+      - optional:configserver:http://localhost:8888
+      - optional:vault://
+  cloud:
+    config:
+      username: configuser
+      # password viene de Vault
+      fail-fast: false
+    vault:
+      uri: http://localhost:8200
+      token: ${VAULT_TOKEN:teamclub-root-token}
+      kv:
+        enabled: true
+        backend: secret
+        default-context: usuario-manager
+        application-name: usuario-manager
+      fail-fast: false
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub-usuario
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_usuario
     # username y password vienen de Vault
 
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: update
-    defer-datasource-initialization: true
+      ddl-auto: none
     properties:
       hibernate:
-        default_schema: teamclub-usuario
+        default_schema: teamclub_usuario
         globally_quoted_identifiers: true
-  
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    default-schema: teamclub_usuario
+    schemas: teamclub_usuario
+
   security:
     oauth2:
       resourceserver:
