@@ -11,8 +11,6 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_auth
-    username: postgres
-    password: eduardo
 
   sql:
     init:
