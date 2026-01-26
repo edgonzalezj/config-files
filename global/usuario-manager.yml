@@ -1,0 +1,24 @@
+# Configuracion especifica de usuario-manager
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+
+  jpa:
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        default_schema: teamclub
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:db/data.sql
+
+clients:
+  auth-manager:
+    url: http://localhost:8081
+
+# internal.api-key viene de Vault

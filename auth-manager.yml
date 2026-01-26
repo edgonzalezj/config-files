@@ -1,0 +1,29 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_schema: teamclub_auth
+
+  sql:
+    init:
+      data-locations: classpath:db/data.sql
+
+  cloud:
+    vault:
+      kv:
+        application-name: auth-manager
+
+clients:
+  usuario-manager:
+    url: http://localhost:8082
+
+# internal.api-key viene de Vault
+
+security:
+  jwt:
+    issuer: wakana-teamclub-auth
+    expires-minutes: 60
+    # secret viene de Vault

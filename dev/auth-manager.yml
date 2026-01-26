@@ -1,0 +1,49 @@
+# Configuracion de desarrollo para auth-manager
+# Los secretos (username, password, api-key, jwt-secret) vienen de Vault
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_auth
+    # username y password vienen de Vault
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        default_schema: teamclub_auth
+        globally_quoted_identifiers: true
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:db/data.sql
+      continue-on-error: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8081/.well-known/jwks.json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+clients:
+  usuario-manager:
+    url: http://localhost:8082
+
+security:
+  jwt:
+    issuer: wakana-teamclub-auth
+    expires-minutes: 60
+    # secret viene de Vault
+
+# internal.api-key viene de Vault

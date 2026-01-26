@@ -1,0 +1,29 @@
+server:
+  port: 8082
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_schema: teamclub
+
+  sql:
+    init:
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
+
+  cloud:
+    vault:
+      kv:
+        application-name: usuario-manager
+
+# internal.api-key viene de Vault
+
+clients:
+  auth-manager:
+    url: http://localhost:8081
+
+teamclub:
+  bootstrap:
+    admin-email: admin@teamclub.com
+    # admin-password debe configurarse en Vault en produccion

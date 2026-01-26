@@ -1,0 +1,43 @@
+# Configuracion de desarrollo para usuario-manager
+# Los secretos (username, password, api-key) vienen de Vault
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+    # username y password vienen de Vault
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        default_schema: teamclub
+        globally_quoted_identifiers: true
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:db/data.sql
+      continue-on-error: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8081/.well-known/jwks.json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+clients:
+  auth-manager:
+    url: http://localhost:8081
+
+# internal.api-key viene de Vault

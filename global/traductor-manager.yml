@@ -1,0 +1,18 @@
+# Configuracion especifica de traductor-manager
+server:
+  port: 8084
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_traductor
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: teamclub_traductor
+
+  sql:
+    init:
+      data-locations: classpath:db/data.sql
+
+# internal.api-key viene de Vault

@@ -1,0 +1,43 @@
+# Configuracion comun para entorno DEV
+# Sobrescribe valores de global/application.yml si es necesario
+# Los secretos (username, password, api-keys) vienen de Vault
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+    # username y password vienen de Vault
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8081/.well-known/jwks.json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+# internal.api-key viene de Vault
+
+# Configuración centralizada de clientes para todos los microservicios
+clients:
+  auth-manager:
+    url: http://localhost:8081
+  usuario-manager:
+    url: http://localhost:8082
+  team-masterdata:
+    url: http://localhost:8083
+  traductor-manager:
+    url: http://localhost:8084
+  club-manager:
+    url: http://localhost:8085

@@ -1,0 +1,32 @@
+# Configuracion comun para todos los microservicios
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+    # username y password vienen de Vault
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+
+  sql:
+    init:
+      mode: never
+      continue-on-error: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8081/.well-known/jwks.json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+# internal.api-key viene de Vault

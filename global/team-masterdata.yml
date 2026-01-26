@@ -1,0 +1,18 @@
+# Configuracion especifica de team-masterdata
+server:
+  port: 8083
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_masterdata
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: teamclub_masterdata
+
+  sql:
+    init:
+      data-locations: classpath:db/data.sql
+
+# internal.api-key viene de Vault

@@ -1,0 +1,30 @@
+# Configuracion especifica de auth-manager
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_auth
+
+  jpa:
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        default_schema: teamclub_auth
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:db/data.sql
+
+clients:
+  usuario-manager:
+    url: http://localhost:8082
+
+security:
+  jwt:
+    issuer: wakana-teamclub-auth
+    expires-minutes: 60
+    # secret viene de Vault
+
+# internal.api-key viene de Vault

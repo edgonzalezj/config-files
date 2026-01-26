@@ -1,0 +1,29 @@
+# Configuracion especifica de club-manager
+server:
+  port: 8085
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_club
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: teamclub_club
+
+  sql:
+    init:
+      data-locations: classpath:db/data.sql
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+clients:
+  team-masterdata:
+    url: http://localhost:8083
+
+# internal.api-key viene de Vault
