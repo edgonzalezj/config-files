@@ -1,10 +1,27 @@
-# Configuracion de desarrollo para team-masterdata
-# Los secretos (username, password) vienen de Vault
-
+# Perfil dev: conecta al Config Server y Vault para secretos
 server:
   port: 8083
 
 spring:
+  config:
+    import:
+      - optional:configserver:http://localhost:8888
+      - optional:vault://
+  cloud:
+    config:
+      username: configuser
+      # password viene de Vault
+      fail-fast: false
+    vault:
+      uri: http://localhost:8200
+      token: ${VAULT_TOKEN:teamclub-root-token}
+      kv:
+        enabled: true
+        backend: secret
+        default-context: team-masterdata
+        application-name: team-masterdata
+      fail-fast: false
+
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_masterdata
     # username y password vienen de Vault
