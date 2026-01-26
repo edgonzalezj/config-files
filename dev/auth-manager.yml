@@ -18,6 +18,11 @@ spring:
         default_schema: teamclub_auth
         globally_quoted_identifiers: true
 
+  sql:
+    init:
+      mode: always
+      continue-on-error: false
+
   security:
     oauth2:
       resourceserver:

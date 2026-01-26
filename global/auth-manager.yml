@@ -15,11 +15,6 @@ spring:
   sql:
     init:
       mode: always
-      data-locations: classpath:db/data.sql
-
-clients:
-  usuario-manager:
-    url: http://localhost:8082
 
 security:
   jwt:

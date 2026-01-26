@@ -17,7 +17,11 @@ spring:
       hibernate:
         default_schema: teamclub-usuario
         globally_quoted_identifiers: true
- 
+
+  sql:
+    init:
+      mode: always
+      continue-on-error: false
 
   security:
     oauth2:

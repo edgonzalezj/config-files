@@ -13,17 +13,9 @@ spring:
         format_sql: true
         default_schema: teamclub_club
 
-  sql:
-    init:
-      data-locations: classpath:db/data.sql
-
 management:
   endpoint:
     health:
       show-details: always
-
-clients:
-  team-masterdata:
-    url: http://localhost:8083
 
 # internal.api-key viene de Vault

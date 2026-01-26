@@ -11,8 +11,4 @@ spring:
       hibernate:
         default_schema: teamclub_traductor
 
-  sql:
-    init:
-      data-locations: classpath:db/data.sql
-
 # internal.api-key viene de Vault
