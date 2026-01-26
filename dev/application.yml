@@ -15,6 +15,12 @@ spring:
       hibernate:
         globally_quoted_identifiers: true
 
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:sql/schema.sql
+      continue-on-error: false
+      
   security:
     oauth2:
       resourceserver:
