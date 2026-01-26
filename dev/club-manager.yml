@@ -26,11 +26,6 @@ spring:
     default-schema: teamclub_club
     schemas: teamclub_club
 
-  sql:
-    init:
-      mode: never
-      continue-on-error: false
-
   security:
     oauth2:
       resourceserver:
