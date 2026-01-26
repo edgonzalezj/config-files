@@ -5,7 +5,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub-usuario
     # username y password vienen de Vault
 
   jpa:
@@ -15,14 +15,9 @@ spring:
     defer-datasource-initialization: true
     properties:
       hibernate:
-        default_schema: teamclub
+        default_schema: teamclub-usuario
         globally_quoted_identifiers: true
-
-  sql:
-    init:
-      mode: always
-      data-locations: classpath:db/data.sql
-      continue-on-error: false
+ 
 
   security:
     oauth2:
@@ -35,9 +30,5 @@ management:
     web:
       exposure:
         include: health,info
-
-clients:
-  auth-manager:
-    url: http://localhost:8081
 
 # internal.api-key viene de Vault
