@@ -1,22 +1,18 @@
-# Perfil dev: conecta al Config Server y Vault para secretos
+# Perfil dev: conecta al Config Server (sin Vault, secretos directos)
 server:
   port: 8081
 
 spring:
   cloud:
+    config:
+      enabled: true
     vault:
-      uri: http://localhost:8200
-      token: ${VAULT_TOKEN:teamclub-root-token}
-      kv:
-        enabled: true
-        backend: secret
-        default-context: auth-manager
-        application-name: auth-manager
-      fail-fast: false
+      enabled: false
 
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_auth
-    # username y password vienen de Vault
+    username: postgres
+    password: eduardo
 
   jpa:
     open-in-view: false
@@ -39,7 +35,8 @@ management:
       exposure:
         include: health,info
 
-# internal.api-key viene de Vault
+internal:
+  api-key: wakana-internal-key
 
 security:
   jwt:
