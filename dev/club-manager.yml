@@ -1,9 +1,27 @@
-# Configuracion de desarrollo para club-manager
-# Los secretos (username, password) vienen de Vault
+# Perfil dev: conecta al Config Server y Vault para secretos
 server:
   port: 8085
 
 spring:
+  config:
+    import:
+      - optional:configserver:http://localhost:8888
+      - optional:vault://
+  cloud:
+    config:
+      username: configuser
+      # password viene de Vault
+      fail-fast: false
+    vault:
+      uri: http://localhost:8200
+      token: ${VAULT_TOKEN:teamclub-root-token}
+      kv:
+        enabled: true
+        backend: secret
+        default-context: club-manager
+        application-name: club-manager
+      fail-fast: false
+
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_club
     # username y password vienen de Vault
@@ -12,10 +30,8 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: none
-    show-sql: true
     properties:
       hibernate:
-        format_sql: true
         default_schema: teamclub_club
         globally_quoted_identifiers: true
 
@@ -25,6 +41,8 @@ spring:
     locations: classpath:db/migration
     default-schema: teamclub_club
     schemas: teamclub_club
+
+
 
   security:
     oauth2:
@@ -40,5 +58,3 @@ management:
   endpoint:
     health:
       show-details: always
-
-# internal.api-key viene de Vault
