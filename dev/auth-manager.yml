@@ -3,15 +3,7 @@ server:
   port: 8081
 
 spring:
-  config:
-    import:
-      - optional:configserver:http://localhost:8888
-      - optional:vault://
   cloud:
-    config:
-      username: configuser
-      password: configpass
-      fail-fast: false
     vault:
       uri: http://localhost:8200
       token: ${VAULT_TOKEN:teamclub-root-token}
