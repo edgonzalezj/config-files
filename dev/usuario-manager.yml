@@ -10,7 +10,7 @@ spring:
   cloud:
     config:
       username: configuser
-      # password viene de Vault
+      password: configpass
       fail-fast: false
     vault:
       uri: http://localhost:8200
