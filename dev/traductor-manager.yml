@@ -17,11 +17,6 @@ spring:
         default_schema: teamclub_traductor
         globally_quoted_identifiers: true
 
-  sql:
-    init:
-      mode: never
-      data-locations: classpath:db/data.sql
-      continue-on-error: false
 
   security:
     oauth2:
