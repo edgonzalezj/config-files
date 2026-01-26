@@ -35,13 +35,6 @@ spring:
         default_schema: teamclub_masterdata
         globally_quoted_identifiers: true
 
-  flyway:
-    enabled: true
-    baseline-on-migrate: true
-    locations: classpath:db/migration
-    default-schema: teamclub_masterdata
-    schemas: teamclub_masterdata
-
   security:
     oauth2:
       resourceserver:
