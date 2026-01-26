@@ -7,8 +7,7 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_masterdata
-    username: postgres
-    password: eduardo
+    # username y password vienen de Vault
 
   jpa:
     open-in-view: false
