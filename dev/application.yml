@@ -3,10 +3,7 @@
 # Los secretos (username, password, api-keys) vienen de Vault
 
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub
-    # username y password vienen de Vault
-
+  
   jpa:
     open-in-view: false
     hibernate:
