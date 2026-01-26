@@ -3,6 +3,8 @@ server:
   port: 8081
 
 spring:
+  config:
+    import: "optional:vault://"
   cloud:
     vault:
       uri: http://localhost:8200
