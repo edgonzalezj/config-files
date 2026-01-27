@@ -41,7 +41,3 @@ management:
   endpoint:
     health:
       show-details: always
-
-clients:
-  team-masterdata:
-    url: http://localhost:8083
