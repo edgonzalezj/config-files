@@ -7,12 +7,10 @@ spring:
     config:
       enabled: true
     vault:
-      enabled: false
+      enabled: true
 
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_traductor
-    username: postgres
-    password: eduardo
 
   sql:
     init:
