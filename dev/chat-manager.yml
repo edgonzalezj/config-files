@@ -1,0 +1,58 @@
+# Perfil dev: conecta al Config Server y Vault
+server:
+  port: 8095
+  servlet:
+    context-path: /chat-manager
+
+spring:
+  cloud:
+    config:
+      enabled: true
+    vault:
+      enabled: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=teamclub_chat
+
+  jpa:
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+        default_schema: teamclub_chat
+
+  # RabbitMQ configuration for STOMP relay
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: teamclub
+    password: teamclub
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8091/auth-manager
+          jwk-set-uri: http://localhost:8091/auth-manager/jwks
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+logging:
+  level:
+    com.wakana.teamclub: DEBUG
+    org.springframework.web.socket: DEBUG
+    org.springframework.messaging: DEBUG
